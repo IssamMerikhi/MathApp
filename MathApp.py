@@ -216,7 +216,7 @@ def produit_scalaire(new):
         x3 = random.randint(-10,10)
         y3 = random.randint(-10,10)
 
-        C=(x2,y3)
+        C=(x3,y3)
 
         x4 = random.randint(-10,10)
         y4 = random.randint(-10,10)
@@ -250,9 +250,7 @@ def produit_scalaire(new):
                             mode='lines+markers',
                             name='CD'))
 
-
-        produit['layout']['yaxis1'].update(title='', range=[-11, 11], autorange=False)
-        produit['layout']['xaxis1'].update(title='', range=[-11, 11], autorange=False)
+        produit.update_layout(yaxis=dict(scaleanchor="x", scaleratio=1))
         produit.update_layout(title = "Le vecteur AB : (xB-xA, yB-yA) = "+str(u)+"<br> Le vecteur CD : (xD-xC, yD-yC) = "+str(v)+"<br> Le produit scalaire vaut : "+str(((x2-x1)*(x4-x3))+((y2-y1)*(y4-y3))))
         produit.update_layout(
         title = {
@@ -306,8 +304,7 @@ def produit_scalaire(new):
                             ),
                             mode='markers+lines',
                             name='CD'))
-        produit['layout']['yaxis1'].update(title='', range=[-11, 11], autorange=False)
-        produit['layout']['xaxis1'].update(title='', range=[-11, 11], autorange=False)
+        produit.update_layout(yaxis=dict(scaleanchor="x", scaleratio=1))
         produit.update_layout(title = "Le vecteur AB : (xB-xA, yB-yA) = "+str(u)+"<br> Le vecteur CD : (xD-xC, yD-yC) = "+str(v)+"<br> Le produit scalaire vaut : "+str((x2-x1)*(x4-x3)+(y2-y1)*(y4-y3)))
         produit.update_layout(
         title = {
