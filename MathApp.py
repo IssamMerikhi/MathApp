@@ -52,9 +52,9 @@ app.layout = html.Div([
 
         html.Div([
         dcc.Dropdown(id = 'new',
-        options=[{'label': 'Nouveaux vecteurs', 'value': 'N'},
-                 {'label': 'Nouveaux vecteurs', 'value': 'V'}],
-        value='N')
+        options=[{'label': 'Nouveaux aléatoires', 'value': 'A'},
+                 {'label': 'Nouveaux orthogonaux', 'value': 'O'}],
+        value='A')
         ],
         style={'width': '50%'}),
 
@@ -202,7 +202,7 @@ def produit_scalaire(new):
 
     produit = go.Figure()
 
-    if (new == 'N'):
+    if (new == 'A'):
         x1 = random.randint(-10,10)
         y1 = random.randint(-10,10)
 
@@ -226,18 +226,6 @@ def produit_scalaire(new):
         u = (x2-x1,y2-y1)
         v = (x4-x3,y4-y3)
 
-        print("Le point A : ", A)
-        print("Le point B : ", B,"\n")
-
-        print("Le vecteur AB : (xB-xA, yB-yA) =",u,"\n\n")
-
-        print("Le point C : ",C)
-        print("Le point D : ",D,"\n")
-
-        print("Le vecteur CD : (xD-xC, yD-yC) =",v,"\n\n")
-
-
-
         df2 = {'xAB': [x1, x2],
             'xCD': [x3, x4],
             'yAB': [y1, y2],
@@ -247,7 +235,6 @@ def produit_scalaire(new):
 
         df2 = pd.DataFrame(df2, columns=['xAB', 'xCD', 'yAB', 'yCD'])
 
-        print(df2)
         produit.add_trace(go.Scatter(x=df2['xAB'], y=df2['yAB'],
                             marker = dict(
                                 symbol = "triangle-right" ,
@@ -266,42 +253,36 @@ def produit_scalaire(new):
 
         produit['layout']['yaxis1'].update(title='', range=[-11, 11], autorange=False)
         produit['layout']['xaxis1'].update(title='', range=[-11, 11], autorange=False)
+        produit.update_layout(title = "Le vecteur AB : (xB-xA, yB-yA) = "+str(u)+"<br> Le vecteur CD : (xD-xC, yD-yC) = "+str(v)+"<br> Le produit scalaire vaut : "+str(((x2-x1)*(x4-x3))+((y2-y1)*(y4-y3))))
+        produit.update_layout(
+        title = {
+            'y':0.95,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'})
 
-
-    if (new == 'V'):
+    if (new == 'O'):
         x1 = random.randint(-10,10)
         y1 = random.randint(-10,10)
 
         A=(x1,y1)
 
-        x2 = random.randint(-10,10)
-        y2 = random.randint(-10,10)
+        x2 = x1 + random.randint(0,5)
+        y2 = y1 + random.randint(0,5)
 
         B=(x2,y2)
+
+        u = (x2-x1,y2-y1)
+
 
         x3 = random.randint(-10,10)
         y3 = random.randint(-10,10)
 
-        C=(x2,y3)
+        x4 = x3 + random.randint(0,5)
+        y4 = (-(x2-x1)*(x4-x3))/(y2-y1) + y3
 
-        x4 = random.randint(-10,10)
-        y4 = random.randint(-10,10)
 
-        D=(x4,y4)
-
-        u = (x2-x1,y2-y1)
         v = (x4-x3,y4-y3)
-
-        print("Le point A : ", A)
-        print("Le point B : ", B,"\n")
-
-        print("Le vecteur AB : (xB-xA, yB-yA) =",u,"\n\n")
-
-        print("Le point C : ",C)
-        print("Le point D : ",D,"\n")
-
-        print("Le vecteur CD : (xD-xC, yD-yC) =",v,"\n\n")
-
 
 
         df2 = {'xAB': [x1, x2],
@@ -313,26 +294,27 @@ def produit_scalaire(new):
 
         df2 = pd.DataFrame(df2, columns=['xAB', 'xCD', 'yAB', 'yCD'])
 
-        print(df2)
         produit.add_trace(go.Scatter(x=df2['xAB'], y=df2['yAB'],
                             marker = dict(
-                                symbol = "triangle-right" ,
                                 size = 10                       
                             ),
-                            mode='lines+markers',
+                            mode='markers+lines',
                             name='AB'))
         produit.add_trace(go.Scatter(x=df2['xCD'], y=df2['yCD'],
                             marker = dict(
-                                symbol = "triangle-right" ,
                                 size = 10                       
                             ),
-                            mode='lines+markers',
+                            mode='markers+lines',
                             name='CD'))
-
-
         produit['layout']['yaxis1'].update(title='', range=[-11, 11], autorange=False)
         produit['layout']['xaxis1'].update(title='', range=[-11, 11], autorange=False)
-
+        produit.update_layout(title = "Le vecteur AB : (xB-xA, yB-yA) = "+str(u)+"<br> Le vecteur CD : (xD-xC, yD-yC) = "+str(v)+"<br> Le produit scalaire vaut : "+str((x2-x1)*(x4-x3)+(y2-y1)*(y4-y3)))
+        produit.update_layout(
+        title = {
+            'y':0.95,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'})
 
     return produit
 
