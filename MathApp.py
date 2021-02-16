@@ -21,19 +21,6 @@ app.layout = html.Div([
         html.H2("By maths teachers, for maths teachers"),
         html.Img(src="/assets/icon.png")
     ], className = 'banner'),
-
-        html.Div([        
-        dcc.Graph(id='fonction')
-    ],
-        style={'width': '50%', 'display': 'inline-block'}),
-
-
-    html.Div([
-        dcc.Graph(id='suite')
-    ],
-    style={'width': '50%', 'display': 'inline-block'}),
-
-
         html.Div([
         dcc.Dropdown(id = 'form',
         options=[{'label': 'Parabole en U', 'value': 'U'},
@@ -48,7 +35,20 @@ app.layout = html.Div([
                  {'label': 'Decroissante Suite', 'value': 'decroi'}],
         value='croi')
         ],
-        style={'width': '50%', 'display': 'inline-block'})
+        style={'width': '50%', 'display': 'inline-block'}),
+        html.Div([        
+        dcc.Graph(id='fonction')
+    ],
+        style={'width': '50%', 'display': 'inline-block'}),
+
+
+    html.Div([
+        dcc.Graph(id='suite')
+    ],
+    style={'width': '50%', 'display': 'inline-block'}),
+
+
+
 
 ])
 
@@ -62,6 +62,8 @@ def update_output(form):
 
 
     fonction = go.Figure()
+
+    a_prime = 0
 
     if (form == 'U'):
         a = random.randint(0,10)
@@ -137,7 +139,7 @@ def update_output(form):
         df = pd.DataFrame(X,Y)
 
         suite = px.bar(df, x=X, y=Y)
-        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1) "+str(r)+"<br> C'est une suite croissante")
+        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1)x"+str(r)+"<br> C'est une suite croissante")
         suite.update_layout(
         title = {
             'y':0.95,
@@ -158,7 +160,7 @@ def update_output(form):
         df = pd.DataFrame(X,Y)
 
         suite = px.bar(df, x=X, y=Y)
-        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1) "+str(r)+"<br> C'est une suite décroissante")
+        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1)"+str(r)+"<br> C'est une suite décroissante")
         suite.update_layout(
         title = {
             'y':0.95,
