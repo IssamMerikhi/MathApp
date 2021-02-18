@@ -10,6 +10,7 @@ from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 import plotly.graph_objects as go
 import random
+from math import *
 
 
 # print(px.data.gapminder()[:15])
@@ -56,13 +57,27 @@ app.layout = html.Div([
                  {'label': 'Nouveaux orthogonaux', 'value': 'O'}],
         value='A')
         ],
-        style={'width': '50%'}),
+        style={'width': '50%', 'display': 'inline-block'}),
+
+        html.Div([
+        dcc.Dropdown(id = 'intensite',
+        options=[{'label': 'I = 1', 'value': '1'},
+                 {'label': 'I = 10', 'value': '10'},
+                 {'label': 'I = 100', 'value': '100'}],
+        value='1')
+        ],
+        style={'width': '50%', 'display': 'inline-block'}),
+
 
     html.Div([
         dcc.Graph(id='produit')
     ],
-    style={'width': '50%'}),
+    style={'width': '50%', 'display': 'inline-block'}),
 
+    html.Div([
+        dcc.Graph(id='son')
+    ],
+    style={'width': '50%', 'display': 'inline-block'}),
 ])
 
 #---------------------------------------------------------------
@@ -277,8 +292,28 @@ def produit_scalaire(new):
         y3 = random.randint(-10,10)
 
         x4 = x3 + random.randint(0,5)
-        y4 = (-(x2-x1)*(x4-x3))/(y2-y1) + y3
+        while (y2 - y1 == 0):
+        
+            x1 = random.randint(-10,10)
+            y1 = random.randint(-10,10)
 
+            A=(x1,y1)
+
+            x2 = x1 + random.randint(0,5)
+            y2 = y1 + random.randint(0,5)
+
+            B=(x2,y2)
+
+            u = (x2-x1,y2-y1)
+
+
+            x3 = random.randint(-10,10)
+            y3 = random.randint(-10,10)
+
+            x4 = x3 + random.randint(0,5)
+
+
+        y4 = (-(x2-x1)*(x4-x3))/(y2-y1) + y3
 
         v = (x4-x3,y4-y3)
 
@@ -314,6 +349,61 @@ def produit_scalaire(new):
             'yanchor': 'top'})
 
     return produit
+
+@app.callback(
+    Output(component_id='son', component_property='figure'),
+    [Input(component_id='intensite', component_property='value')]
+)
+
+
+def produit_scalaire(intensite):
+
+    son = go.Figure()
+
+    if (intensite == '1'):
+        x=np.linspace(0,100,1000)
+        R2 = 10*np.log((x*1/4*pi*2)/10**(-12))
+        R4 = 10*np.log((x*1/4*pi*4)/10**(-12))
+        R8 = 10*np.log((x*1/4*pi*8)/10**(-12))
+        R16 = 10*np.log((x*1/4*pi*16)/10**(-12))
+
+        son = go.Figure(go.Scatter(x=x, y= R2))
+        son.add_trace(go.Scatter(x=x, y= R4))
+        son.add_trace(go.Scatter(x=x, y= R8))
+        son.add_trace(go.Scatter(x=x, y= R16))
+        
+    if (intensite == '10'):
+
+        x=np.linspace(0,100,1000)
+        R2 = 10*np.log((x*10/4*pi*2)/10**(-12))
+        R4 = 10*np.log((x*10/4*pi*4)/10**(-12))
+        R8 = 10*np.log((x*10/4*pi*8)/10**(-12))
+        R16 = 10*np.log((x*10/4*pi*16)/10**(-12))
+
+        son = go.Figure(go.Scatter(x=x, y= R2))
+        son.add_trace(go.Scatter(x=x, y= R4))
+        son.add_trace(go.Scatter(x=x, y= R8))
+        son.add_trace(go.Scatter(x=x, y= R16))
+
+
+
+    if (intensite == '100'):
+
+
+        x=np.linspace(0,100,1000)
+        R2 = 10*np.log((x*100/4*pi*2)/10**(-12))
+        R4 = 10*np.log((x*100/4*pi*4)/10**(-12))
+        R8 = 10*np.log((x*100/4*pi*8)/10**(-12))
+        R16 = 10*np.log((x*100/4*pi*16)/10**(-12))
+
+        son = go.Figure(go.Scatter(x=x, y= R2))
+        son.add_trace(go.Scatter(x=x, y= R4))
+        son.add_trace(go.Scatter(x=x, y= R8))
+        son.add_trace(go.Scatter(x=x, y= R16))
+    
+    return son
+
+
 
 
 
