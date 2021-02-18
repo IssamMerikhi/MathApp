@@ -1,1 +1,1 @@
-web: gunicorn MathApp:app
+web: gunicorn app:server
