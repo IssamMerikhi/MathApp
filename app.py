@@ -22,7 +22,7 @@ server = app.server
 app.layout = html.Div([
 
     html.Div([
-        html.H2("By Issam & Maxence, for maths teachers"),
+        html.H2("By maths teachers, for maths teachers"),
         html.Img(src="/assets/icon.png")
     ], className = 'banner'),
         html.Div([
