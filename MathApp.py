@@ -16,6 +16,7 @@ from math import *
 # print(px.data.gapminder()[:15])
 
 app = dash.Dash(__name__)
+server = app.server
 
 #---------------------------------------------------------------
 app.layout = html.Div([
