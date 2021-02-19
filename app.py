@@ -13,21 +13,17 @@ import random
 from math import *
 
 
-# print(px.data.gapminder()[:15])
 
 app = dash.Dash(__name__)
 server = app.server
 
 #---------------------------------------------------------------
 app.layout = html.Div([
-
+    html.Div(["Get Maths"], className='titre'),
+    html.Div([], className = 'h'),
     html.Div([
-        html.H2("By maths teachers, for maths teachers"),
-        html.Img(src="/assets/icon.png")
-    ], className = 'banner'),
-        html.Div([
-        dcc.Dropdown(id = 'form',
-        options=[{'label': 'Parabole en U', 'value': 'U'},
+    dcc.Dropdown(id = 'form',
+       options=[{'label': 'Parabole en U', 'value': 'U'},
                  {'label': 'Parabole en n', 'value': 'n'}],
         value='U')
         ],
@@ -79,6 +75,8 @@ app.layout = html.Div([
         dcc.Graph(id='son')
     ],
     style={'width': '50%', 'display': 'inline-block'}),
+
+    html.Div([], className = 'footer')
 ])
 
 #---------------------------------------------------------------
@@ -359,6 +357,7 @@ def produit_scalaire(new):
 
 def produit_scalaire(intensite):
 
+    
     son = go.Figure()
 
     if (intensite == '1'):
