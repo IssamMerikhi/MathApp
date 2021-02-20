@@ -20,6 +20,7 @@ server = app.server
 #---------------------------------------------------------------
 app.layout = html.Div([
     html.Div(["Get Maths"], className='titre'),
+    html.Div([], style={'width': '30%'} ,className='einstein'),
     html.Div([], className = 'h'),
     html.Div([
     dcc.Dropdown(id = 'form',
@@ -27,7 +28,7 @@ app.layout = html.Div([
                  {'label': 'Parabole en n', 'value': 'n'}],
         value='U')
         ],
-        style={'width': '50%', 'display': 'inline-block'}),
+        style={'width': '30%', 'display': 'inline-block', 'padding-top': '10px', 'margin-left': '100px'}),
 
         html.Div([
         dcc.Dropdown(id = 'monotonie',
@@ -35,7 +36,7 @@ app.layout = html.Div([
                  {'label': 'Decroissante Suite', 'value': 'decroi'}],
         value='croi')
         ],
-        style={'width': '50%', 'display': 'inline-block'}),
+        style={'width': '30%', 'display': 'inline-block', 'margin-left': '300px'}),
         html.Div([        
         dcc.Graph(id='fonction')
     ],
@@ -54,7 +55,7 @@ app.layout = html.Div([
                  {'label': 'Nouveaux orthogonaux', 'value': 'O'}],
         value='A')
         ],
-        style={'width': '50%', 'display': 'inline-block'}),
+        style={'width': '30%', 'display': 'inline-block', 'padding-top': '10px', 'margin-left': '100px'}),
 
         html.Div([
         dcc.Dropdown(id = 'intensite',
@@ -63,7 +64,7 @@ app.layout = html.Div([
                  {'label': 'I = 100', 'value': '100'}],
         value='1')
         ],
-        style={'width': '50%', 'display': 'inline-block'}),
+        style={'width': '30%', 'display': 'inline-block', 'margin-left': '300px'}),
 
 
     html.Div([
@@ -251,14 +252,12 @@ def produit_scalaire(new):
 
         produit.add_trace(go.Scatter(x=df2['xAB'], y=df2['yAB'],
                             marker = dict(
-                                symbol = "triangle-right" ,
                                 size = 10                       
                             ),
                             mode='lines+markers',
                             name='AB'))
         produit.add_trace(go.Scatter(x=df2['xCD'], y=df2['yCD'],
                             marker = dict(
-                                symbol = "triangle-right" ,
                                 size = 10                       
                             ),
                             mode='lines+markers',
