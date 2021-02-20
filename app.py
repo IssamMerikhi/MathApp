@@ -28,7 +28,11 @@ app.layout = html.Div([
                  {'label': 'Parabole en n', 'value': 'n'}],
         value='U')
         ],
-        style={'width': '30%', 'display': 'inline-block', 'padding-top': '10px', 'margin-left': '100px'}),
+        style={'width': '30%',
+        'display': 'inline-block',
+        'padding-top': '10px',
+        'margin-left': '100px',
+        'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
         html.Div([
         dcc.Dropdown(id = 'monotonie',
@@ -36,7 +40,12 @@ app.layout = html.Div([
                  {'label': 'Decroissante Suite', 'value': 'decroi'}],
         value='croi')
         ],
-        style={'width': '30%', 'display': 'inline-block', 'margin-left': '300px'}),
+        style={'width': '30%',
+        'display': 'inline-block',
+        'padding-top': '10px',
+        'margin-left': '300px',
+        'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
+
         html.Div([        
         dcc.Graph(id='fonction')
     ],
@@ -55,7 +64,11 @@ app.layout = html.Div([
                  {'label': 'Nouveaux orthogonaux', 'value': 'O'}],
         value='A')
         ],
-        style={'width': '30%', 'display': 'inline-block', 'padding-top': '10px', 'margin-left': '100px'}),
+        style={'width': '30%',
+        'display': 'inline-block',
+        'padding-top': '10px',
+        'margin-left': '100px',
+        'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
         html.Div([
         dcc.Dropdown(id = 'intensite',
@@ -64,7 +77,11 @@ app.layout = html.Div([
                  {'label': 'I = 100', 'value': '100'}],
         value='1')
         ],
-        style={'width': '30%', 'display': 'inline-block', 'margin-left': '300px'}),
+        style={'width': '30%',
+        'display': 'inline-block',
+        'padding-top': '10px',
+        'margin-left': '300px',
+        'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
 
     html.Div([
@@ -264,7 +281,7 @@ def produit_scalaire(new):
                             name='CD'))
 
         produit.update_layout(yaxis=dict(scaleanchor="x", scaleratio=1))
-        produit.update_layout(title = "Le vecteur AB : (xB-xA, yB-yA) = "+str(u)+"<br> Le vecteur CD : (xD-xC, yD-yC) = "+str(v)+"<br> Le produit scalaire vaut : "+str(((x2-x1)*(x4-x3))+((y2-y1)*(y4-y3))))
+        produit.update_layout(title = "Le vecteur AB : "+str(u)+"<br> Le vecteur CD : "+str(v)+"<br> Le produit scalaire vaut : "+str(((x2-x1)*(x4-x3))+((y2-y1)*(y4-y3))))
         produit.update_layout(
         title = {
             'y':0.95,
