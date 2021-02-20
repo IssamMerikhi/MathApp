@@ -19,11 +19,11 @@
     width: 300px;
     padding: 60px;
     margin-top: 0px;
-    margin-left: 1100px;
     padding-left: -35px;
     position: absolute;
     background-repeat: no-repeat;
     object-fit: contain;
+    right: -27%;
 }
 
 
@@ -59,3 +59,8 @@
 .modebar{
     display: none !important;
 }
+
+html,body{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
