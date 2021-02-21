@@ -15,6 +15,7 @@ from math import *
 
 
 app = dash.Dash(__name__)
+app.title = 'Maths 78'
 server = app.server
 
 #---------------------------------------------------------------
