@@ -29,10 +29,10 @@ app.layout = html.Div([
                  {'label': 'Parabole en n', 'value': 'n'}],
         value='U')
         ],
-        style={'width': '30%',
+        style={'width': '20%',
         'display': 'inline-block',
         'padding-top': '10px',
-        'margin-left': '100px',
+        'margin-left': '10%',
         'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
         html.Div([
@@ -41,10 +41,10 @@ app.layout = html.Div([
                  {'label': 'Decroissante Suite', 'value': 'decroi'}],
         value='croi')
         ],
-        style={'width': '30%',
+        style={'width': '20%',
         'display': 'inline-block',
         'padding-top': '10px',
-        'margin-left': '300px',
+        'margin-left': '40%',
         'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
         html.Div([        
@@ -65,10 +65,10 @@ app.layout = html.Div([
                  {'label': 'Nouveaux orthogonaux', 'value': 'O'}],
         value='A')
         ],
-        style={'width': '30%',
+        style={'width': '20%',
         'display': 'inline-block',
         'padding-top': '10px',
-        'margin-left': '100px',
+        'margin-left': '10%',
         'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
         html.Div([
@@ -78,10 +78,10 @@ app.layout = html.Div([
                  {'label': 'I = 100', 'value': '100'}],
         value='1')
         ],
-        style={'width': '30%',
+        style={'width': '20%',
         'display': 'inline-block',
         'padding-top': '10px',
-        'margin-left': '300px',
+        'margin-left': '40%',
         'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
 
