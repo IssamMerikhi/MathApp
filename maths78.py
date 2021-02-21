@@ -94,9 +94,8 @@ app.layout = html.Div([
     ],
     style={'width': '50%', 'display': 'inline-block'}),
 
-    html.Div([], className = 'footer'),
+    html.Div(["Copyright - Issam Merikhi 2021 - All rights reserved"], className = 'footer'),
 
-    html.Div(["Copyright - Issam Merikhi 2021 - All rights reserved"], className = 'copy'),
 
 
 
