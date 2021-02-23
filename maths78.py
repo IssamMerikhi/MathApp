@@ -37,8 +37,8 @@ app.layout = html.Div([
 
         html.Div([
         dcc.Dropdown(id = 'monotonie',
-        options=[{'label': 'Croissante Suite', 'value': 'croi'},
-                 {'label': 'Decroissante Suite', 'value': 'decroi'}],
+        options=[{'label': 'Suite croissante', 'value': 'croi'},
+                 {'label': 'Suite décroissante', 'value': 'decroi'}],
         value='croi')
         ],
         style={'width': '20%',
@@ -127,8 +127,8 @@ def update_output(form):
         y_prime = a_prime*x + b
 
 
-        fonction = go.Figure(data=go.Scatter(x=x, y=y))
-        fonction.add_trace(go.Scatter(x=x, y=y_prime))
+        fonction = go.Figure(data=go.Scatter(x=x, y=y, name = "f(X)"))
+        fonction.add_trace(go.Scatter(x=x, y=y_prime, name = "f'(X)"))
         fonction.update_layout(title = "La fonction : "+str(a)+"x^2 + "+str(b)+"x + "+str(c)+"<br> Sa dérivée : "+str(a_prime)+"x + "+str(b))
         fonction.update_layout(
         title = {
@@ -136,6 +136,16 @@ def update_output(form):
             'x':0.5,
             'xanchor': 'center',
             'yanchor': 'top'})
+        fonction.update_layout(
+        xaxis_title="X",
+        yaxis_title="Y",
+        legend_title="Functions",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+        )
+    )
 
     if (form == 'n'):
         a = random.randint(-10,0)
@@ -147,16 +157,25 @@ def update_output(form):
         y = a*x**2 + b*x + c
         y_prime = 2*a*x + b
 
-        fonction = go.Figure(data=go.Scatter(x=x, y=y))
-        fonction.add_trace(go.Scatter(x=x, y=y_prime))
+        fonction = go.Figure(data=go.Scatter(x=x, y=y, name ="f(X)"))
+        fonction.add_trace(go.Scatter(x=x, y=y_prime, name ="f'(X)"))
         fonction.update_layout(title = "La fonction : "+str(a)+"x^2 + "+str(b)+"x + "+str(c)+"<br> Sa dérivée : "+str(a_prime)+"x + "+str(b))
         fonction.update_layout(
         title = {
             'y':0.9,
             'x':0.5,
             'xanchor': 'center',
-            'yanchor': 'top'})
-
+            'yanchor': 'top'}),
+        fonction.update_layout(
+        xaxis_title="X",
+        yaxis_title="Y",
+        legend_title="Functions",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+        )
+    )
     return fonction
 
 
@@ -196,6 +215,15 @@ def update_output(form):
             'x':0.5,
             'xanchor': 'center',
             'yanchor': 'top'})
+        suite.update_layout(
+        xaxis_title="n",
+        yaxis_title="Un",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+        )
+    )
 
     if (form == 'decroi'):
         U1 = random.randint(-10,10)
@@ -217,6 +245,15 @@ def update_output(form):
             'x':0.5,
             'xanchor': 'center',
             'yanchor': 'top'})
+        suite.update_layout(
+        xaxis_title="n",
+        yaxis_title="Un",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+            )
+        )
     return suite
 
 
