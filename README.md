@@ -11,6 +11,7 @@ Use [pip](https://pypi.org/project/pip/) to install all requirements : `pip inst
 ### Documentation
 
 <img src ="assets/function.gif" width = "auto" height = "auto">
+<img src ="assets/vector.gif" width = "auto" height = "auto">
 
 ## Built With
 
