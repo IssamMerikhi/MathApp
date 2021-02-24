@@ -28,4 +28,4 @@ Developped by Issam Merikhi with the support Tiphaine Richard as a personal proj
 
 ## License
 
-
+[Apache 2.0 License](https://github.com/IssamMerikhi/Maths78/edit/main/LICENSE)
