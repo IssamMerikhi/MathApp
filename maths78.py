@@ -26,7 +26,9 @@ app.layout = html.Div([
     html.Div([
     dcc.Dropdown(id = 'form',
        options=[{'label': 'Parabole en U', 'value': 'U'},
-                 {'label': 'Parabole en n', 'value': 'n'}],
+                 {'label': 'Parabole en n', 'value': 'n'},
+                 {'label': 'Trinome a>0', 'value': 'apos'},
+                 {'label': 'Trinome a<0', 'value': 'aneg'}],
         value='U')
         ],
         style={'width': '20%',
@@ -37,9 +39,11 @@ app.layout = html.Div([
 
         html.Div([
         dcc.Dropdown(id = 'monotonie',
-        options=[{'label': 'Suite croissante', 'value': 'croi'},
-                 {'label': 'Suite décroissante', 'value': 'decroi'}],
-        value='croi')
+        options=[{'label': 'Ari croissante', 'value': 'acroi'},
+                 {'label': 'Ari décroissante', 'value': 'adecroi'},
+                 {'label': 'Géo croissante', 'value': 'gcroi'},
+                 {'label': 'Géo décroissante', 'value': 'gdecroi'}],
+        value='acroi')
         ],
         style={'width': '20%',
         'display': 'inline-block',
@@ -108,7 +112,7 @@ app.layout = html.Div([
     [Input(component_id='form', component_property='value')]
 )
 
-def update_output(form):
+def function_output(form):
 
 
     fonction = go.Figure()
@@ -155,7 +159,8 @@ def update_output(form):
         x = np.linspace(-20,20,1000)
 
         y = a*x**2 + b*x + c
-        y_prime = 2*a*x + b
+        a_prime = 2*a
+        y_prime = a_prime*x + b
 
         fonction = go.Figure(data=go.Scatter(x=x, y=y, name ="f(X)"))
         fonction.add_trace(go.Scatter(x=x, y=y_prime, name ="f'(X)"))
@@ -176,6 +181,79 @@ def update_output(form):
             color="black"
         )
     )
+
+    if (form == 'apos'):
+        a = random.randint(0,10)
+        b = random.randint(-10,10)
+        c = random.randint(-10,10)
+
+        d = random.randint(-10,10)
+        
+        x = np.linspace(-100,100,1000)
+
+        y = a*x**3 + b*x**2 + c*x + d
+        y_prime = 3*a*x**2 + 2*b*x + c
+
+        a_prime = 3*a
+        b_prime = 2*b
+        c_prime = c
+
+        fonction = go.Figure(data=go.Scatter(x=x, y=y, name ="f(X)"))
+        fonction.add_trace(go.Scatter(x=x, y=y_prime, name ="f'(X)"))
+        fonction.update_layout(title = "La fonction : "+str(a)+"x^3 + "+str(b)+"x^2 + "+str(c)+"x +"+str(d)+"<br> Sa dérivée : "+str(a_prime)+"x^2 + "+str(b_prime)+"x +"+str(c_prime))
+        fonction.update_layout(
+        title = {
+            'y':0.9,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'}),
+        fonction.update_layout(
+        xaxis_title="X",
+        yaxis_title="Y",
+        legend_title="Functions",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+        )
+    )
+
+    if (form == 'aneg'):
+        a = random.randint(-10,0)
+        b = random.randint(-10,10)
+        c = random.randint(-10,10)
+
+        d = random.randint(-10,10)
+        
+        x = np.linspace(-100,100,1000)
+
+        y = a*x**3 + b*x**2 + c*x + d
+        y_prime = 3*a*x**2 + 2*b*x + c
+        a_prime = 3*a
+        b_prime = 2*b
+        c_prime = c
+
+
+        fonction = go.Figure(data=go.Scatter(x=x, y=y, name ="f(X)"))
+        fonction.add_trace(go.Scatter(x=x, y=y_prime, name ="f'(X)"))
+        fonction.update_layout(title = "La fonction : "+str(a_prime)+"x^3 + "+str(b_prime)+"x^2 + "+str(c_prime)+"x +"+str(d)+"<br> Sa dérivée : "+str(3*a_prime)+"x^2 + "+str(2*b)+"x +"+str(c))
+        fonction.update_layout(
+        title = {
+            'y':0.9,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'}),
+        fonction.update_layout(
+        xaxis_title="X",
+        yaxis_title="Y",
+        legend_title="Functions",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+        )
+    )
+
     return fonction
 
 
@@ -191,11 +269,11 @@ def update_output(form):
     [Input(component_id='monotonie', component_property='value')]
 )
 
-def update_output(form):
+def suite_output(monotonie):
     
     suite = px.bar()
 
-    if (form == 'croi'):
+    if (monotonie == 'acroi'):
         U1 = random.randint(-10,10)
         r = random.randint(0,10)
         n = random.randint(50,100)
@@ -208,7 +286,7 @@ def update_output(form):
         df = pd.DataFrame(X,Y)
 
         suite = px.bar(df, x=X, y=Y)
-        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1)x"+str(r)+"<br> C'est une suite croissante")
+        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1)x"+str(r)+"<br> C'est une suite arithmétique croissante")
         suite.update_layout(
         title = {
             'y':0.95,
@@ -225,7 +303,7 @@ def update_output(form):
         )
     )
 
-    if (form == 'decroi'):
+    if (monotonie == 'adecroi'):
         U1 = random.randint(-10,10)
         r = random.randint(-10,0)
         n = random.randint(50,100)
@@ -238,7 +316,7 @@ def update_output(form):
         df = pd.DataFrame(X,Y)
 
         suite = px.bar(df, x=X, y=Y)
-        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1)"+str(r)+"<br> C'est une suite décroissante")
+        suite.update_layout(title = "La suite : Un = "+str(U1)+" + (n-1)"+str(r)+"<br> C'est une suite arithmétique décroissante")
         suite.update_layout(
         title = {
             'y':0.95,
@@ -254,6 +332,69 @@ def update_output(form):
             color="black"
             )
         )
+
+
+    if (monotonie == 'gcroi'):
+        U1 = random.randint(-10,10)
+        q = random.randint(2,5)
+        n = random.randint(3,6)
+        Un = U1 + q**(n-1)
+
+
+        X = [(n_loc) for n_loc in range(1,n+1)]
+        Y = [U1 + q**(n_loc-1) for n_loc in range(1,n+1)]
+
+        df = pd.DataFrame(X,Y)
+
+        suite = px.bar(df, x=X, y=Y)
+        suite.update_layout(title = "La suite : Un = "+str(U1)+" + "+str(q)+"^(n-1)<br> C'est une suite géométrique croissante")
+        suite.update_layout(
+        title = {
+            'y':0.95,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'})
+        suite.update_layout(
+        xaxis_title="n",
+        yaxis_title="Un",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+            )
+        )
+
+
+    if (monotonie == 'gdecroi'):
+        U1 = random.randint(-10,10)
+        q = np.random.choice([1/4,1/2,3/4,1])
+        n = random.randint(3,6)
+        Un = U1 + q**(n-1)
+
+
+        X = [(n_loc) for n_loc in range(1,n+1)]
+        Y = [U1 + q**(n_loc-1) for n_loc in range(1,n+1)]
+
+        df = pd.DataFrame(X,Y)
+
+        suite = px.bar(df, x=X, y=Y)
+        suite.update_layout(title = "La suite : Un = "+str(U1)+" + "+str(q)+"^(n-1) <br> C'est une suite géométrique décroissante")
+        suite.update_layout(
+        title = {
+            'y':0.95,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'})
+        suite.update_layout(
+        xaxis_title="n",
+        yaxis_title="Un",
+        font=dict(
+            family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            size=13,
+            color="black"
+            )
+        )
+
     return suite
 
 
@@ -413,7 +554,7 @@ def produit_scalaire(new):
 )
 
 
-def produit_scalaire(intensite):
+def logarithme(intensite):
 
     
     son = go.Figure()
