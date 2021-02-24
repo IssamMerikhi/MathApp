@@ -14,7 +14,17 @@ Use [pip](https://pypi.org/project/pip/) to install all requirements : `pip inst
 
 ## Built With
 
+- [plotly](https://plotly.com/python/) - Interactive graphics
+- [dash](https://plotly.com/dash/) - For the application
+- [heroku](https://dashboard.heroku.com/) - Cloud Application Plateform
+
+
+
 
 ## Authors and acknoledgment
 
+Developped by Issam Merikhi with the support Tiphaine Richard as a personal project.
+
 ## License
+
+
