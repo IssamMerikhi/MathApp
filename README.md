@@ -4,7 +4,7 @@
 
 ### Documentation
 
-<img src ="assets/*.gif" width = "auto" height = "auto">
+<img src ="assets/function.gif" width = "auto" height = "auto">
 
 ## Built With
 
