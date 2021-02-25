@@ -10,14 +10,14 @@ Use [pip](https://pypi.org/project/pip/) to install all requirements : `pip inst
 
 # Documentation
 
-Maths78 is a simple App that provides an infinite of exercises helping new maths teachers and also serious students. the App cobers 4 fundamentals mathematical concepts which are :
+Maths78 is a simple App that provides an **infinite of exercises** helping maths teachers in lack of exercises and also high school students. the App covers 4 fundamentals mathematical concepts which are :
 
 - 2nd and 3rd functions degree and theirs derivatives.
 - Arithmetics and geometrics sequences.
-- Vectors
+- Vectors and orthogonality
 - Log
 
-Exercises are computed with random coefficients which provides the user an infinite of exercises.
+Exercises are computed with random coefficients which provides the user an infinite of exercises. No need to prepare classes ANYMORE.
 
 ## Usage
 
