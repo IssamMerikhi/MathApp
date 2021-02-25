@@ -27,6 +27,10 @@ As example, the user can choose the functions topic and choose a 2nd degree func
 
 
 <img src ="assets/function.gif" width = "auto" height = "auto">
+
+Again the user is in the Vctor topic' right here points are created randomly. Here the dropdown offers 2 choices, randoms vectors or orthogonals vectors. The teachers can give the 4 points and let the students plot the vectors and calculate if they are orthogonal or not.
+
+
 <img src ="assets/vector.gif" width = "auto" height = "auto">
 
 ## Built With
