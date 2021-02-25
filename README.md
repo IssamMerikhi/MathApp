@@ -17,11 +17,13 @@ Maths78 is a simple App that provides an infinite of exercises helping new maths
 - Vectors
 - Log
 
-Exercicses compute with random coefficients which provides the user an infinite of exercises.
+Exercises are computed with random coefficients which provides the user an infinite of exercises.
 
 ## Usage
 
-The App has been made the simplest possible. The 4 topics are displayed in 4 differents and distincts blocks.
+The App has been made the simplest possible. The 4 topics are displayed in 4 differents and distincts blocks. Once the topic choosed, the user can click on the dropdown which provides differents subtopics on a concept.
+
+As example, the user can choose the functions topic and choose a 2nd degree function with n-shape or U-shape. Be careful, since the coefficients are ceated randomly the user can fall with a 2nd degree function with a=0 which will be just a line.
 
 
 <img src ="assets/function.gif" width = "auto" height = "auto">
