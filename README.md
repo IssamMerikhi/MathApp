@@ -8,7 +8,7 @@ The app : [Maths78](https://maths78.herokuapp.com/)
 
 Use [pip](https://pypi.org/project/pip/) to install all requirements : `pip install -r requirements.txt`
 
-### Documentation
+# Documentation
 
 Maths78 is a simple App that provides an infinite of exercises helping new maths teachers and also serious students. the App cobers 4 fundamentals mathematical concepts which are :
 
@@ -17,7 +17,11 @@ Maths78 is a simple App that provides an infinite of exercises helping new maths
 - Vectors
 - Log
 
+Exercicses compute with random coefficients which provides the user an infinite of exercises.
 
+## Usage
+
+The App has been made the simplest possible. The 4 topics are displayed in 4 differents and distincts blocks.
 
 
 <img src ="assets/function.gif" width = "auto" height = "auto">
