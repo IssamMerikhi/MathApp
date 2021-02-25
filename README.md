@@ -39,12 +39,14 @@ Again the user is in the Vctor topic' right here points are created randomly. He
 - [dash](https://plotly.com/dash/) - For the application
 - [heroku](https://dashboard.heroku.com/) - Cloud Application Plateform
 
+## Contributing
 
+We appreciate all contributions to improve Maths78. For major changes, please open an issue first to discuss what you would like to change.
 
 
 ## Authors and acknoledgment
 
-Developped by Issam Merikhi with the support Tiphaine Richard as a personal project.
+Developped by Issam Merikhi with the support Tiphaine Richard as a entertaining project.
 
 ## License
 
