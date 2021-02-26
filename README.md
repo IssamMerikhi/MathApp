@@ -1,4 +1,4 @@
-<img src ="assets/head.png" width = "400" height = "100" margin-left=50%>
+<img src ="assets/favicon.ico" width = "250" height = 250">
 
 
 # Maths78
