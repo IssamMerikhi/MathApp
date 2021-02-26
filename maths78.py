@@ -11,6 +11,8 @@ from dash.exceptions import PreventUpdate
 import plotly.graph_objects as go
 import random
 from math import *
+from random import choice
+
 
 
 
@@ -65,8 +67,8 @@ app.layout = html.Div([
 
         html.Div([
         dcc.Dropdown(id = 'new',
-        options=[{'label': 'Nouveaux aléatoires', 'value': 'A'},
-                 {'label': 'Nouveaux orthogonaux', 'value': 'O'}],
+        options=[{'label': 'Vecteurs aléatoires', 'value': 'A'},
+                 {'label': 'Vecteurs orthogonaux', 'value': 'O'}],
         value='A')
         ],
         style={'width': '20%',
@@ -76,11 +78,11 @@ app.layout = html.Div([
         'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
         html.Div([
-        dcc.Dropdown(id = 'intensite',
-        options=[{'label': 'I = 1', 'value': '1'},
-                 {'label': 'I = 10', 'value': '10'},
-                 {'label': 'I = 100', 'value': '100'}],
-        value='1')
+        dcc.Dropdown(id = 'type',
+        options=[{'label': 'Droites aléatoires', 'value': 'a'},
+                 {'label': 'Droites orthogonales', 'value': 'o'},
+                 {'label': 'Droites parallèles', 'value': 'p'}],
+        value='a')
         ],
         style={'width': '20%',
         'display': 'inline-block',
@@ -95,7 +97,7 @@ app.layout = html.Div([
     style={'width': '50%', 'display': 'inline-block'}),
 
     html.Div([
-        dcc.Graph(id='son')
+        dcc.Graph(id='droites')
     ],
     style={'width': '50%', 'display': 'inline-block'}),
 
@@ -549,58 +551,99 @@ def produit_scalaire(new):
     return produit
 
 @app.callback(
-    Output(component_id='son', component_property='figure'),
-    [Input(component_id='intensite', component_property='value')]
+    Output(component_id='droites', component_property='figure'),
+    [Input(component_id='type', component_property='value')]
 )
 
 
-def logarithme(intensite):
+def droite(type):
 
     
-    son = go.Figure()
+    droites = go.Figure()
 
-    if (intensite == '1'):
-        x=np.linspace(0,100,1000)
-        R2 = 10*np.log((x*1/4*pi*2)/10**(-12))
-        R4 = 10*np.log((x*1/4*pi*4)/10**(-12))
-        R8 = 10*np.log((x*1/4*pi*8)/10**(-12))
-        R16 = 10*np.log((x*1/4*pi*16)/10**(-12))
+    if (type == 'a'):
+        droites = go.Figure()
 
-        son = go.Figure(go.Scatter(x=x, y= R2))
-        son.add_trace(go.Scatter(x=x, y= R4))
-        son.add_trace(go.Scatter(x=x, y= R8))
-        son.add_trace(go.Scatter(x=x, y= R16))
+        a1 = random.randint(1,10)
+        b1 = random.randint(-10,10)
+
+        a2 = random.randint(1,10)
+        b2 = random.randint(0,10)
+
+        x = np.linspace(-20,20,1000)
+
+        y1 = a1*x + b1
+        y2 = a2*x + b2
+
+        droites = go.Figure(data=go.Scatter(x=x, y=y1, name = "y1"))
+        droites.add_trace(go.Scatter(x=x, y=y2, name = "y2"))
+
+        droites.update_layout(title = "La droite y1 : "+str(a1)+"x + "+str(b1)+"<br> La droite y2 : "+str(a2)+"x + "+str(b2))
+        droites.update_layout(
+                title = {
+                    'y':0.9,
+                    'x':0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'})
+
         
-    if (intensite == '10'):
-
-        x=np.linspace(0,100,1000)
-        R2 = 10*np.log((x*10/4*pi*2)/10**(-12))
-        R4 = 10*np.log((x*10/4*pi*4)/10**(-12))
-        R8 = 10*np.log((x*10/4*pi*8)/10**(-12))
-        R16 = 10*np.log((x*10/4*pi*16)/10**(-12))
-
-        son = go.Figure(go.Scatter(x=x, y= R2))
-        son.add_trace(go.Scatter(x=x, y= R4))
-        son.add_trace(go.Scatter(x=x, y= R8))
-        son.add_trace(go.Scatter(x=x, y= R16))
+    if (type == 'o'):
 
 
+        a1 = random.randint(1,10)
+        b1 = choice([i for i in range(-11,11) if i != 0])
+ 
 
-    if (intensite == '100'):
+        a2 = -(1/a1)
+        b2 = random.randint(0,10)
+
+        x = np.linspace(-20,20,1000)
+
+        y1 = a1*x + b1
+        y2 = a2*x + b2
+
+        droites = go.Figure(data=go.Scatter(x=x, y=y1, name = "y1"))
+        droites.add_trace(go.Scatter(x=x, y=y2, name = "y2"))
+
+        droites.update_layout(title = "La droite y1 : "+str(a1)+"x + "+str(b1)+"<br> La droite y2 : "+str(a2)+"x + "+str(b2))
+        droites.update_layout(
+                title = {
+                    'y':0.9,
+                    'x':0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'})
+        droites.update_layout(yaxis=dict(scaleanchor="x", scaleratio=1))
 
 
-        x=np.linspace(0,100,1000)
-        R2 = 10*np.log((x*100/4*pi*2)/10**(-12))
-        R4 = 10*np.log((x*100/4*pi*4)/10**(-12))
-        R8 = 10*np.log((x*100/4*pi*8)/10**(-12))
-        R16 = 10*np.log((x*100/4*pi*16)/10**(-12))
+        
+    if (type == 'p'):
 
-        son = go.Figure(go.Scatter(x=x, y= R2))
-        son.add_trace(go.Scatter(x=x, y= R4))
-        son.add_trace(go.Scatter(x=x, y= R8))
-        son.add_trace(go.Scatter(x=x, y= R16))
+        droites = go.Figure()
+
+        a1 = random.randint(-10,10)
+        b1 = random.randint(-10,10)
+
+        a2 = a1
+        b2 = random.randint(-10,10)
+
+        x = np.linspace(-20,20,1000)
+
+        y1 = a1*x + b1
+        y2 = a2*x + b2
+
+        droites = go.Figure(data=go.Scatter(x=x, y=y1, name = "y1"))
+        droites.add_trace(go.Scatter(x=x, y=y2, name = "y2"))
+
+        droites.update_layout(title = "La droite y1 : "+str(a1)+"x + "+str(b1)+"<br> La droite y2 : "+str(a2)+"x + "+str(b2))
+        droites.update_layout(
+                title = {
+                    'y':0.9,
+                    'x':0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'})
+
     
-    return son
+    return droites
 
 
 
