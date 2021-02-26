@@ -1,4 +1,4 @@
-<img src ="assets/favicon.ico" width = "250" height = 250">
+<img src ="assets/favicon.png" width = "250" height = 250">
 
 
 # Maths78
