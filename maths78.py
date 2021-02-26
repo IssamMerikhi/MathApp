@@ -22,16 +22,16 @@ server = app.server
 
 #---------------------------------------------------------------
 app.layout = html.Div([
-    html.Div(["Get Maths"], className='titre'),
+    html.Div(["Enjoy Maths"], className='titre'),
     html.Div([], style={'width': '30%'} ,className='einstein'),
     html.Div([], className = 'h'),
-    html.Div([
-    dcc.Dropdown(id = 'form',
-       options=[{'label': 'Parabole en U', 'value': 'U'},
-                 {'label': 'Parabole en n', 'value': 'n'},
-                 {'label': 'Trinome a>0', 'value': 'apos'},
-                 {'label': 'Trinome a<0', 'value': 'aneg'}],
-        value='U')
+
+        html.Div([
+        dcc.Dropdown(id = 'type',
+        options=[{'label': 'Droites aléatoires', 'value': 'a'},
+                 {'label': 'Droites orthogonales', 'value': 'o'},
+                 {'label': 'Droites parallèles', 'value': 'p'}],
+        value='a')
         ],
         style={'width': '20%',
         'display': 'inline-block',
@@ -53,11 +53,10 @@ app.layout = html.Div([
         'margin-left': '40%',
         'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
 
-        html.Div([        
-        dcc.Graph(id='fonction')
+    html.Div([
+        dcc.Graph(id='droites')
     ],
-        style={'width': '50%', 'display': 'inline-block'}),
-
+    style={'width': '50%', 'display': 'inline-block'}),
 
     html.Div([
         dcc.Graph(id='suite')
@@ -76,13 +75,14 @@ app.layout = html.Div([
         'padding-top': '10px',
         'margin-left': '10%',
         'font-family':'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif'}),
-
-        html.Div([
-        dcc.Dropdown(id = 'type',
-        options=[{'label': 'Droites aléatoires', 'value': 'a'},
-                 {'label': 'Droites orthogonales', 'value': 'o'},
-                 {'label': 'Droites parallèles', 'value': 'p'}],
-        value='a')
+ 
+    html.Div([
+    dcc.Dropdown(id = 'form',
+       options=[{'label': 'Parabole en U', 'value': 'U'},
+                 {'label': 'Parabole en n', 'value': 'n'},
+                 {'label': 'Trinome a>0', 'value': 'apos'},
+                 {'label': 'Trinome a<0', 'value': 'aneg'}],
+        value='U')
         ],
         style={'width': '20%',
         'display': 'inline-block',
@@ -96,10 +96,10 @@ app.layout = html.Div([
     ],
     style={'width': '50%', 'display': 'inline-block'}),
 
-    html.Div([
-        dcc.Graph(id='droites')
+        html.Div([        
+        dcc.Graph(id='fonction')
     ],
-    style={'width': '50%', 'display': 'inline-block'}),
+        style={'width': '50%', 'display': 'inline-block'}),
 
     html.Div(["Copyright - Issam Merikhi 2021 - All rights reserved"], className = 'footer'),
 
@@ -540,7 +540,7 @@ def produit_scalaire(new):
                             mode='markers+lines',
                             name='CD'))
         produit.update_layout(yaxis=dict(scaleanchor="x", scaleratio=1))
-        produit.update_layout(title = "Le vecteur AB : (xB-xA, yB-yA) = "+str(u)+"<br> Le vecteur CD : (xD-xC, yD-yC) = "+str(v)+"<br> Le produit scalaire vaut : "+str((x2-x1)*(x4-x3)+(y2-y1)*(y4-y3)))
+        produit.update_layout(title = "Le vecteur AB : "+str(u)+"<br> Le vecteur CD : "+str(v)+"<br> Le produit scalaire vaut : "+str((x2-x1)*(x4-x3)+(y2-y1)*(y4-y3)))
         produit.update_layout(
         title = {
             'y':0.95,
