@@ -1,3 +1,6 @@
+<img src ="assets/head.png" width = "auto" height = "auto">
+
+
 # Maths78
 
 Maths78 is a little application that provides maths teachers simple exercises and high school students to understand some basics and fundamentals mathematics concepts.
