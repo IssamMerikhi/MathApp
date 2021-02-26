@@ -1,4 +1,4 @@
-<img src ="assets/maths78" width = "auto" height = "auto">
+<img src ="assets/banner.png" width = "auto" height = "auto">
 
 
 # Maths78
