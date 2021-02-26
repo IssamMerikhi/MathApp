@@ -1,4 +1,4 @@
-<img src ="assets/head.png" width = "auto" height = "auto">
+<img src ="assets/head.png" width = "300" height = "600">
 
 
 # Maths78
